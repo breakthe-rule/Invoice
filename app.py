@@ -1,6 +1,8 @@
 import streamlit as st
 import fitz
 import easyocr
+import tempfile
+import shutil
 from PIL import Image
 import openai
 import json
@@ -17,9 +19,17 @@ def extract_text_from_pdf(pdf_file):
         pdf_invoice += text.replace("\n", " ")
     return pdf_invoice
 
-def extract_text_from_image(image_file):
-    reader = easyocr.Reader(['en'])
-    results = reader.readtext(image_file)
+
+
+def extract_text_from_image(uploaded_file):
+
+    with tempfile.NamedTemporaryFile(delete=False, suffix='.jpg') as temp_file:
+        temp_file.write(uploaded_file.read())
+        temp_file_path = temp_file.name
+        
+    reader = easyocr.Reader(['en']) 
+    results = reader.readtext(temp_file_path)    
+    os.remove(temp_file_path)
     text = ''
     for result in results:
         text += result[1] + '\n'
