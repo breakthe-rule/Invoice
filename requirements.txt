@@ -4,4 +4,5 @@ Pillow
 openai==0.28
 easyocr
 numpy
+torch
 opencv-python
