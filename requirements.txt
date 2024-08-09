@@ -1,5 +1,7 @@
 streamlit
 PyMuPDF
-easyocr
 Pillow
 openai==0.28
+easyocr
+numpy
+opencv-python
