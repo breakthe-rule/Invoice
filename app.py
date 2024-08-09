@@ -1,9 +1,10 @@
 import streamlit as st
 import fitz
-import pytesseract
 from PIL import Image
 import openai
 import json
+import easyocr
+
 
 # Initialize OpenAI API key
 openai.api_key = "sk-proj-g7MtvmSyg2Ei65NI7cDpT3BlbkFJRJAz3rVT8G7CVec2Ne8r"
@@ -17,10 +18,17 @@ def extract_text_from_pdf(pdf_file):
         pdf_invoice += text.replace("\n", " ")
     return pdf_invoice
 
+
 def extract_text_from_image(image_file):
-    img = Image.open(image_file)
-    img_invoice = pytesseract.image_to_string(img)
-    return img_invoice
+    reader = easyocr.Reader(['en'])
+    result = reader.readtext(image_file)
+
+    text = ''
+    for detection in result:
+        text += detection[1] + '\n'
+
+    return text
+
 
 def analyze_invoice(content):
     user_message = '''
