@@ -1,0 +1,24 @@
+{
+    "Supplier_details": {
+        "Supplier_name": "TATA MOTORS LIMITED",
+        "Supplier address": "TATA MOTORS LIMITED Nigadi Bhosari Road, PIMPRI Pune, MAHARASHTRA- 411018",
+        "invoice date": "18 Jul 2024",
+        "GSTIN": "27AAACT2727Q1ZW"
+    },
+    "Customer_details": {
+        "Customer_name": "TEST",
+        "Customer address": "Test Hyderabad, TELANGANA, 500089",
+        "invoice date": "18 Jul 2024"
+    },
+    "Data": {
+        "Total": "$7,68,771.00",
+        "LineItems": [
+            {
+                "Id": "WASTE AND SCRAP OF STAINLESS STEEL",
+                "Price": 95,
+                "Totalprice": "1,16,109.00",
+                "Quantity": 6790
+            }
+        ]
+    }
+}
