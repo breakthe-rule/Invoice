@@ -1,6 +1,6 @@
 import streamlit as st
 import fitz
-import pytesseract
+import easyocr
 from PIL import Image
 import openai
 import json
@@ -18,9 +18,12 @@ def extract_text_from_pdf(pdf_file):
     return pdf_invoice
 
 def extract_text_from_image(image_file):
-    img = Image.open(image_file)
-    img_invoice = pytesseract.image_to_string(img)
-    return img_invoice
+    reader = easyocr.Reader(['en'])
+    results = reader.readtext(image_file)
+    text = ''
+    for result in results:
+        text += result[1] + '\n'
+    return text
 
 def analyze_invoice(content):
     user_message = '''
